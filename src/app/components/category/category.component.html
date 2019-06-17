@@ -1,0 +1,60 @@
+<div class="row">
+
+  <div class="col-sm-12 m-b">
+    <h3>Add Category</h3>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search" [(ngModel)]="queryString" />
+    </div>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Add" [(ngModel)]="newCategory" />
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" (click)="addCategory()">
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <div class="col-sm-12 m-b"></div>
+
+  <div class="col-sm-12">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let cat of categories | filter: ['Category', queryString]">
+        <div class="input-group">
+          <label>{{cat.categoryName}}</label>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" title="Edit" data-toggle="modal" data-target="#editCatModal" data-backdrop="static" (click)="catModOpen(cat)">
+              <span class="glyphicon glyphicon-edit"></span>
+            </button>
+            <button type="button" class="btn btn-default" title="Delete" (click)="deleteCategory(cat.categoryId)">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- Category Edit Modal -->
+<div id="editCatModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Category</h4>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="selectedCat.categoryName" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="updateCategory(selectedCat)">Update</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

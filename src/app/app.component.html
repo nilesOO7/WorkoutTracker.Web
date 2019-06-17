@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 well">
+      <div class="row">
+        <div class="col-sm-12 bg-secondary text-dark text-center">
+          <h1>{{title}}</h1>          
+        </div>
+        <div class="col-sm-12 bg-white"><hr/></div>
+        <div class="col-sm-12 bg-light text-dark text-center">
+          <div class="row">
+            <div class="col-sm-6 bg-light text-dark text-center">
+              <div class="row">
+                <div class="col-sm-6 bg-light text-dark text-center">
+                  <h3>
+                    <a routerLink="">View All</a>
+                  </h3>
+                </div>
+                <div class="col-sm-6 bg-light text-dark text-center">
+                  <h3>
+                    <a routerLink="create">Create</a>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 bg-light text-dark text-center">
+              <div class="row">
+                <div class="col-sm-6 bg-light text-dark text-center">
+                  <h3>
+                    <a routerLink="category">Category</a>
+                  </h3>
+                </div>
+                <div class="col-sm-6 bg-light text-dark text-center">
+                  <h3>
+                    <a routerLink="track">Track</a>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 bg-light text-dark">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+</div>
+<ng2-toasty [position]="'bottom-right'"></ng2-toasty>

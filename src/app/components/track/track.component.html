@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-sm-12 m-b"></div>
+  <div class="col-sm-12">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h3>
+          <small>Workout Time of Day: </small>{{trackingData.workoutTimeOfDay}} min</h3>
+      </li>
+      <li class="list-group-item">
+        <h3>
+          <small>Workout Time of Week: </small>{{trackingData.workoutTimeOfWeek}} min</h3>
+      </li>
+      <li class="list-group-item">
+        <h3>
+          <small>Workout Time of Month: </small>{{trackingData.workoutTimeOfMonth}} min</h3>
+      </li>
+      <li class="list-group-item">
+        <div>
+          <div style="display: block">
+            <canvas baseChart 
+              [datasets]="barChartDataWeek" 
+              [labels]="barChartLabelsWeek" 
+              [options]="barChartOptions" 
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              [colors]="colors">
+            </canvas>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <h3 class="text-center">
+          <small>Week Total Calories Burnt: </small>{{trackingData.weekTotalCaloriesBurnt}}</h3>
+      </li>
+      <li class="list-group-item">
+        <div>
+          <div style="display: block">
+            <canvas baseChart 
+              [datasets]="barChartDataMonth" 
+              [labels]="barChartLabelsMonth" 
+              [options]="barChartOptions" 
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              [colors]="colors">
+            </canvas>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <h3 class="text-center">
+          <small>Month Total Calories Burnt: </small>{{trackingData.monthTotalCaloriesBurnt}}</h3>
+      </li>
+      <li class="list-group-item">
+        <div>
+          <div style="display: block">
+            <canvas baseChart 
+              [datasets]="barChartDataYear" 
+              [labels]="barChartLabelsYear" 
+              [options]="barChartOptions" 
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              [colors]="colors">
+            </canvas>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <h3 class="text-center">
+          <small>Year Total Calories Burnt: </small>{{trackingData.yearTotalCaloriesBurnt}}</h3>
+      </li>
+    </ul>
+  </div>
+</div>

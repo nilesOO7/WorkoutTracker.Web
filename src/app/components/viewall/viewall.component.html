@@ -1,0 +1,123 @@
+<div class="row">
+
+  <div class="col-sm-12 m-b"></div>
+
+  <div class="col-sm-12 m-b-md">
+    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="queryString" />
+  </div>
+
+  <div class="col-sm-12">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let col of activeCollections | filter: ['ActiveCollection', queryString]">
+        <div class="input-group">
+          <label>{{col.workoutTitle}}</label>
+        </div>
+        <div class="btn-group btn-group-justified" role="group" aria-label="">
+          <div class="btn-group" role="group">
+            <a [routerLink]="['./edit', col.workoutId]">
+              <button type="button" class="btn btn-default">Edit</button>
+            </a>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" (click)="deleteWorkoutCollection(col.workoutId)">Delete</button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" [disabled]="col.status" data-toggle="modal" data-target="#actStartEndModal"
+              data-backdrop="static" (click)="actStartOpen(col)">Start</button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" [disabled]="!col.status" data-toggle="modal" data-target="#actStartEndModal"
+              data-backdrop="static" (click)="actEndOpen(col)">End</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ActiveCollection Edit Modal -->
+<div id="actStartEndModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+
+        <div class="row">
+
+          <div class="col-sm-12 m-b">
+            <h3>{{this.isActStartModalOpen? 'Start': 'End'}} Workout</h3>
+          </div>
+
+          <div class="col-sm-12">
+
+            <div class="form-horizontal">
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="title">Title:</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" disabled [(ngModel)]="activeCollectionToEdit.workoutTitle" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="note">Comment:</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control" rows="5" [(ngModel)]="activeCollectionToEdit.comment"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group" *ngIf="isActStartModalOpen">
+                <label class="control-label col-sm-2" for="note">Start Date</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" placeholder="yyyy-MM-dd" [(ngModel)]="activeCollectionToEdit.startDate" />
+                </div>
+              </div>
+
+              <div class="form-group" *ngIf="isActStartModalOpen">
+                <label class="control-label col-sm-2" for="note">Start Time</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" placeholder="HH:mm:ss" [(ngModel)]="activeCollectionToEdit.startTime" />
+                </div>
+              </div>
+
+              <div class="form-group" *ngIf="!isActStartModalOpen">
+                <label class="control-label col-sm-2" for="note">End Date</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" placeholder="yyyy-MM-dd" [(ngModel)]="activeCollectionToEdit.endDate" />
+                </div>
+              </div>
+              <div class="form-group" *ngIf="!isActStartModalOpen">
+                <label class="control-label col-sm-2" for="note">End Time</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" placeholder="HH:mm:ss" [(ngModel)]="activeCollectionToEdit.endTime" />
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-sm-12 m-b"></div>
+
+          <div class="col-sm-12">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8 col-sm-offset-4 btn-group text-center">
+              <div class="btn-group" *ngIf="isActStartModalOpen">
+                <button type="button" class="btn btn-default btn-lg" (click)="startWorkout()">Start</button>
+              </div>
+              <div class="btn-group" *ngIf="!isActStartModalOpen">
+                <button type="button" class="btn btn-default btn-lg" (click)="endWorkout()">End</button>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default btn-lg" data-dismiss="modal" #activeModalClose>Cancel</button>
+              </div>
+            </div>
+            <div class="col-sm-2"></div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
